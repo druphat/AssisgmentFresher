@@ -1,0 +1,248 @@
+/*
+.product-list {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.product-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.product-details {
+    flex: 1;
+}
+
+.product-details h4 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.product-details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.product-details span {
+    font-weight: bold;
+    color: #333;
+}
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}*/
+
+/* General Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* ----------- Sidebar Styles ----------- */
+.sidebar {
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+/* Sidebar Category Image */
+.list-group-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.list-group-item span {
+    font-size: 16px;
+    color: #333;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+/* Button Group */
+.btn-group {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-group .btn {
+    font-size: 12px;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* ----------- Product List Styles ----------- */
+.product-list h2 {
+    color: #004085;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.btn.animate-btn {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn.animate-btn:hover {
+    transform: translateY(-3px);
+}
+
+.product-item {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    background-color: #fff;
+}
+
+.product-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card-img-top:hover {
+    transform: scale(1.05);
+}
+
+/* Animation for Modal */
+.animate-modal {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ----------- Responsive Adjustments ----------- */
+@media (max-width: 768px) {
+    /* Sidebar */
+    .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .list-group-item img {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 5px;
+    }
+
+    .list-group-item span {
+        margin: 5px 0;
+        white-space: normal;
+    }
+
+    .btn-group {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-group .btn {
+        flex: 1;
+        text-align: center;
+    }
+
+    /* Product List */
+    .product-list h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn.animate-btn {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .card-img-top {
+        height: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Further compact sidebar and products */
+    .list-group-item img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .product-item {
+        margin-bottom: 15px;
+    }
+
+    .btn.animate-btn {
+        font-size: 0.8rem;
+        padding: 6px 8px;
+    }
+}

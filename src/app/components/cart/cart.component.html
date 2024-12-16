@@ -1,0 +1,31 @@
+<div class="container cart-page py-4">
+    <h2 class="mb-4 text-center fw-bold">Your Cart</h2>
+
+    <!-- Empty Cart Message -->
+    <div *ngIf="cartItems.length === 0" class="empty-cart text-center">
+        <p class="alert alert-warning">Your cart is empty!</p>
+    </div>
+
+    <!-- Cart Items -->
+    <div *ngFor="let item of cartItems" class="cart-item row align-items-center mb-3 p-3 shadow-sm rounded">
+        <div class="col-md-2 col-3">
+            <img [src]="item.images[0]" alt="{{ item.title }}" class="cart-item-image img-fluid rounded" />
+        </div>
+        <div class="col-md-6 col-5">
+            <h4 class="fw-bold">{{ item.title }}</h4>
+            <p class="mb-1 text-secondary">Price: ${{ item.price }}</p>
+            <p class="mb-0 text-secondary">Quantity: {{ item.quantity }}</p>
+        </div>
+        <div class="col-md-4 col-4 text-end">
+            <button (click)="removeItem(item.id)" class="btn btn-danger btn-sm animate-btn">Remove</button>
+        </div>
+    </div>
+
+    <!-- Total Amount -->
+    <div *ngIf="cartItems.length > 0" class="cart-summary text-center mt-4">
+        <h3 class="fw-bold mb-3">Total: ${{ totalAmount }}</h3>
+        <button (click)="proceedToCheckout()" class="btn btn-success checkout-btn animate-btn">
+            Proceed to Checkout
+        </button>
+    </div>
+</div>

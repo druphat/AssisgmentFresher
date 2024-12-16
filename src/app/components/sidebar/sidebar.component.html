@@ -1,0 +1,121 @@
+
+
+<div class="sidebar p-3 border bg-light">
+    <h3 class="text-center mb-4">Categories</h3>
+
+    
+    <ul class="list-group">
+        <li
+            class="list-group-item d-flex align-items-center justify-content-between"
+            *ngFor="let category of categories"
+        >
+            
+            <div class="d-flex align-items-center">
+                <img
+                    [src]="category.image"
+                    alt="{{ category.name }}"
+                    class="rounded me-3"
+                    style="width: 50px; height: 50px; object-fit: cover;"
+                />
+                <span class="fw-bold text-truncate">{{ category.name }}</span>
+            </div>
+
+            
+            <div class="btn-group">
+                <button
+                    class="btn btn-sm btn-outline-primary"
+                    (click)="editCategory(category)"
+                >
+                    Edit
+                </button>
+                <button
+                    class="btn btn-sm btn-outline-danger"
+                    (click)="deleteCategory(category.id)"
+                >
+                    Delete
+                </button>
+            </div>
+        </li>
+    </ul>
+
+    
+    <div
+        *ngIf="error"
+        class="alert alert-danger mt-3"
+        role="alert"
+    >
+        {{ error }}
+    </div>
+
+    <button
+        class="btn btn-success w-100 mt-3"
+        (click)="openAddCategoryModal()"
+    >
+        + Add Category
+    </button>
+
+    
+    <div
+        *ngIf="isCategoryModalOpen"
+        class="modal fade show"
+        style="display: block; background-color: rgba(0, 0, 0, 0.5);"
+    >
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        {{ isEditing ? 'Edit Category' : 'Add Category' }}
+                    </h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        aria-label="Close"
+                        (click)="closeCategoryModal()"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Category Name:</label>
+                            <input
+                                formControlName="name"
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                placeholder="Enter category name"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image URL:</label>
+                            <input
+                                formControlName="image"
+                                type="text"
+                                class="form-control"
+                                id="image"
+                                placeholder="Enter image URL"
+                            />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        [disabled]="categoryForm.invalid"
+                        (click)="saveCategory()"
+                    >
+                        Save
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="closeCategoryModal()"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

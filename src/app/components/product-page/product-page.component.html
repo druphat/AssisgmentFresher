@@ -1,0 +1,67 @@
+<div class="container py-5 product-list">
+    <h2 class="text-center mb-4 fw-bold">Products</h2>
+  
+    <div class="text-end mb-3">
+      <button class="btn btn-primary fw-bold animate-btn" (click)="openAddProductModal()">
+        + Add Product
+      </button>
+    </div>
+  
+    <div *ngIf="products.length === 0" class="alert alert-info text-center">
+      No products available for this category.
+    </div>
+  
+    <div class="row gy-4">
+      <div *ngFor="let product of products" class="col-md-4 col-sm-6 col-12">
+        <div class="card h-100 shadow-sm product-item animate-card">
+          <img [src]="product.images[0]" class="card-img-top product-image" alt="{{ product.title }}" />
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{ product.title }}</h5>
+            <p class="card-text text-muted mb-2">{{ product.description }}</p>
+            <span class="fw-bold text-success">Price: ${{ product.price }}</span>
+          </div>
+          <div class="card-footer bg-transparent text-end">
+            <button class="btn btn-sm btn-success animate-btn" (click)="addToCart(product)">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="isAddProductModalOpen" class="modal fade show d-block" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content animate-modal">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Product</h5>
+          <button type="button" class="btn-close" (click)="closeAddProductModal()"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+            <div class="mb-3">
+              <label for="title" class="form-label">Product Title</label>
+              <input formControlName="title" type="text" id="title" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input formControlName="price" type="number" id="price" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea formControlName="description" id="description" class="form-control" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Image URL</label>
+              <input formControlName="image" type="text" id="image" class="form-control" required />
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">Save</button>
+              <button type="button" class="btn btn-secondary" (click)="closeAddProductModal()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
